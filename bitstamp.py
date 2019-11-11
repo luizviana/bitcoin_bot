@@ -3,6 +3,13 @@ import json
 
 import websocket
 
+def comprar():
+    pass
+
+
+def vender():
+    pass
+
 
 def ao_abrir(ws):
     print("Abriu a conexão")
@@ -24,7 +31,13 @@ def erro(ws, erro):
 
 def ao_receber_mensagem(ws, mensagem):
     mensagem = json.loads(mensagem)
-    print(mensagem['data']['price']) 
+    price = mensagem['data']['price']
+    if price > 9000:
+        vender()
+    elif price < 8100:
+        comprar()
+    else:
+        print("Aguardar...")
 
 
 def ao_fechar(ws):
